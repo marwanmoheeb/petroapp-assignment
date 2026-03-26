@@ -94,14 +94,7 @@ class TransferController extends Controller
             ];
 
             if (array_key_exists($eventId, $uniqueByEventId)) {
-                if ($uniqueByEventId[$eventId] !== $normalized) {
-                    return response()->json([
-                        'message' => 'Invalid payload.',
-                        'errors' => [
-                            "events.$i.event_id" => ['Duplicate event_id in the same request must have identical data.'],
-                        ],
-                    ], 400);
-                }
+                continue;
             } else {
                 $uniqueByEventId[$eventId] = $normalized;
             }
